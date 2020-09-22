@@ -12,9 +12,9 @@ import com.capg.inventorymgmtsystem.dto.InventoryTxnDto;
 import com.capg.inventorymgmtsystem.entity.InventoryTxn;
 import com.capg.inventorymgmtsystem.entity.Product;
 import com.capg.inventorymgmtsystem.entity.Vendor;
-import com.capg.inventorymgmtsystem.exceptions.InvalidProdIdException;
-import com.capg.inventorymgmtsystem.exceptions.InvalidVendorIdException;
-import com.capg.inventorymgmtsystem.exceptions.OutOfStockException;
+import com.capg.inventorymgmtsystem.excpetions.InvalidProductIdException;
+import com.capg.inventorymgmtsystem.excpetions.InvalidVendorIdException;
+import com.capg.inventorymgmtsystem.excpetions.OutOfStockException;
 import com.capg.inventorymgmtsystem.util.InventoryTxnConstants;
 
 @Service
@@ -29,7 +29,7 @@ public class InventoryTxnServiceImpl implements InventoryTxnService{
 	public InventoryTxn addInvTxn(InventoryTxnDto dto) {
 		InventoryTxn txn = new InventoryTxn();
 		Product prod = dao.viewProduct(dto.getProductId());
-		if (prod == null) throw new InvalidProdIdException(InventoryTxnConstants.INVALID_PRODUCT);
+		if (prod == null) throw new InvalidProductIdException(InventoryTxnConstants.INVALID_PRODUCT);
 		Vendor vendor = dao.viewVendor(dto.getVendorId());
 		if(vendor == null) throw new InvalidVendorIdException(InventoryTxnConstants.INVALID_VENDOR);
 				

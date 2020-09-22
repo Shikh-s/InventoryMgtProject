@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.capg.inventorymgmtsystem.dto.InventoryTxnDto;
 import com.capg.inventorymgmtsystem.entity.InventoryTxn;
-import com.capg.inventorymgmtsystem.exceptions.InvalidProdIdException;
-import com.capg.inventorymgmtsystem.exceptions.InvalidVendorIdException;
-import com.capg.inventorymgmtsystem.exceptions.OutOfStockException;
+import com.capg.inventorymgmtsystem.excpetions.InvalidProductIdException;
+import com.capg.inventorymgmtsystem.excpetions.InvalidVendorIdException;
+import com.capg.inventorymgmtsystem.excpetions.OutOfStockException;
 import com.capg.inventorymgmtsystem.service.InventoryTxnService;
 
 @CrossOrigin(origins= "http://localhost:4200")
@@ -38,7 +38,7 @@ public class InventoryTxnController {
 		catch(InvalidVendorIdException e) {
 			return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
 		}
-		catch(InvalidProdIdException e) {
+		catch(InvalidProductIdException e) {
 			return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
 		}
 	}

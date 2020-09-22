@@ -1,33 +1,18 @@
-package com.capg.inventorymgmtsystem.entity;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+package com.capg.inventorymgmtsystem.dto;
 
 /**
  * 
- * @author Piyush PRODUCT POJO Class
+ * @author Piyush ProductDto(Data Transfer Object) class
  *
  */
-@Entity
-@Table(name = "Product")
-public class Product {
+public class ProductDto {
 
-	@Id
-	@Column(name = "product_id")
 	private long productId;
-	@Column(name = "product_name", length = 25)
 	private String productName;
-	@Column(name = "product_model", length = 25)
 	private String productModel;
-	@Column(name = "product_brand", length = 25)
 	private String brand;
-	@Column(name = "product_stock")
 	private int stock;
-	@Column(name = "seller_price")
 	private double sellerPrice;
-	@Column(name = "supplier_price")
 	private double supplierPrice;
 
 	public long getProductId() {
@@ -87,13 +72,6 @@ public class Product {
 	}
 
 	/**
-	 * Default constructor
-	 */
-	public Product() {
-		super();
-	}
-
-	/**
 	 * Parameterized constructor
 	 * 
 	 * @param productId
@@ -104,8 +82,8 @@ public class Product {
 	 * @param sellerPrice
 	 * @param supplierPrice
 	 */
-	public Product(long productId, String productName, String productModel, String brand, int stock, double sellerPrice,
-			double supplierPrice) {
+	public ProductDto(long productId, String productName, String productModel, String brand, int stock,
+			double sellerPrice, double supplierPrice) {
 		super();
 		this.productId = productId;
 		this.productName = productName;
@@ -116,9 +94,16 @@ public class Product {
 		this.supplierPrice = supplierPrice;
 	}
 
+	/**
+	 * default constructor
+	 */
+	public ProductDto() {
+		super();
+	}
+
 	@Override
 	public String toString() {
-		return "Product [productId=" + productId + ", productName=" + productName + ", productModel=" + productModel
+		return "ProductDto [productId=" + productId + ", productName=" + productName + ", productModel=" + productModel
 				+ ", brand=" + brand + ", stock=" + stock + ", sellerPrice=" + sellerPrice + ", supplierPrice="
 				+ supplierPrice + "]";
 	}

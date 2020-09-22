@@ -1,4 +1,4 @@
-package com.capg.InventoryManagementSystem;
+package com.capg.inventorymgmtsystem;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

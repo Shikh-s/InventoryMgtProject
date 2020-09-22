@@ -2,7 +2,7 @@ package com.capg.inventorymgmtsystem.dao;
 
 import java.util.List;
 
-import org.hibernate.validator.constraints.ParameterScriptAssert;
+//import org.hibernate.validator.constraints.ParameterScriptAssert;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -26,7 +26,5 @@ public interface InventoryTxnDao extends JpaRepository<InventoryTxn, Long>{
 
 	@Query("FROM InventoryTxn it where it.vendor.vendorId=:vid")
 	List<InventoryTxn> viewInventory(@Param("vid") long vendorId);
-
-	
-	
+	//import org.hibernate.validator.constraints.ParameterScriptAssert;
 }

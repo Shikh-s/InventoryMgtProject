@@ -1,4 +1,4 @@
-package com.capg.inventorymgmtsystem.exceptions;
+package com.capg.inventorymgmtsystem.excpetions;
 
 public class OutOfStockException extends RuntimeException {
 	public OutOfStockException(String msg) {
