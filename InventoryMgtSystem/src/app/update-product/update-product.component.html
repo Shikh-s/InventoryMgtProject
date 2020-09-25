@@ -1,0 +1,77 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark"><ul class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link" routerLink="/viewAllProducts">View_All_Products</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/addProduct">Add_Product</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/updateProduct">Update_Product</a>
+      </li>
+</ul>
+</nav>    
+<div class="container">
+    <h1>Update Product</h1>
+    <hr>
+<div class="message">
+<h3>{{message}}</h3>
+</div>
+<div class="row">
+    <div class="col-md-6">
+    <form #updateProductForm="ngForm">
+       <div class="form-group">
+                <label >Enter Product ID </label>
+                <input required type="text" [(ngModel)]="product.productId" name="productId" pattern="[0-9]{4,}"
+                placeholder="Enter Product Id" #productId="ngModel" [class.is-invalid]="productId.invalid && productId.touched" class="form-control">
+                <small class="text-danger" [class.d-none]="productId.valid || productId.untouched">*Product ID is not entered</small>
+                <small class="text-danger" *ngIf="productId.errors?.pattern && productId.touched">
+                    (*Product Id must be of min. 4 digits)
+                </small>
+            </div>
+        <div class="form-group">
+            <label >Enter Product Name </label>
+            <input required type="text" [(ngModel)]="product.productName" name="productName" 
+            placeholder="Enter Product Name"  #productName="ngModel" [class.is-invalid]="productName.invalid && productName.touched" class="form-control">
+            <small class="text-danger" [class.d-none]="productName.valid || productName.untouched">*Product Name is not entered</small>
+        </div>
+        <div class="form-group">
+            <label for="productModel">Enter Product Model </label>
+            <input required type="text" [(ngModel)]="product.productModel" name="productModel" 
+            placeholder="Enter Product Model" #productModel="ngModel" [class.is-invalid]="productModel.invalid && productModel.touched" class="form-control">
+            <small class="text-danger" [class.d-none]="productModel.valid || productModel.untouched">*Product Model is not entered</small>
+        </div>
+        <div class="form-group">
+            <label for="brand">Enter Product Brand </label>
+            <input required type="text" [(ngModel)]="product.brand" name="brand" 
+            placeholder="Enter Product Brand" #brand="ngModel" [class.is-invalid]="brand.invalid && brand.touched" class="form-control">
+            <small class="text-danger" [class.d-none]="brand.valid || brand.untouched">*Brand is not entered</small>
+        </div>
+        <div class="form-group">
+            <label for="stock">Enter Product Stock </label>
+            <input required type="text" [(ngModel)]="product.stock" name="stock" 
+            placeholder="Enter Product Stock" #stock="ngModel" [class.is-invalid]="stock.invalid && stock.touched" class="form-control">
+            <small class="text-danger" [class.d-none]="stock.valid || stock.untouched">*Stock is not entered</small>
+        </div>
+        <div class="form-group">
+            <label for="sellerPrice">Enter Seller Price </label>
+            <input required type="text" [(ngModel)]="product.sellerPrice" name="sellerPrice" 
+            placeholder="Enter Seller Price" #sellerPrice="ngModel" [class.is-invalid]="sellerPrice.invalid && sellerPrice.touched" class="form-control">
+            <small class="text-danger" [class.d-none]="sellerPrice.valid || sellerPrice.untouched">*Seller Price is not entered</small>
+        </div>
+        <div class="form-group">
+            <label for="supplierPrice">Enter Supplier Price </label>
+            <input required type="text" [(ngModel)]="product.supplierPrice" name="supplierPrice" 
+            placeholder="Enter Supplier Price" #supplierPrice="ngModel" [class.is-invalid]="supplierPrice.invalid && supplierPrice.touched" class="form-control">
+            <small class="text-danger" [class.d-none]="supplierPrice.valid || supplierPrice.untouched">*Supplier Price is not entered</small>
+        </div>
+        <br>
+    <div class="form-group">
+        <button class="btn btn-success" [disabled]="updateProductForm.form.invalid" type="submit"
+            (click)="updateProduct(product)">Update</button>
+    </div>
+</form>
+</div>
+</div>
+
+
+</div>

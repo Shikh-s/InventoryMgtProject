@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+<ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/viewAllProducts">View_All_Products</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/addProduct">Add_Product</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" routerLink="/updateProduct">Update_Product</a>
+      </li>
+</ul>
+</nav>
+<h2>Registered Products</h2>
+<hr>
+<h3>{{message}}</h3>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Product Id</th>
+            <th>Product Name</th>
+            <th>Product Model</th>
+            <th>Brand</th>
+            <th>Stock</th>
+            <th>Seller Price</th>
+            <th>Supplier Price</th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let p of products">
+        <td>{{p.productId}}</td>
+        <td>{{p.productName}}</td>
+        <td>{{p.productModel}}</td>
+        <td>{{p.brand}}</td>
+        <td>{{p.stock}}</td>
+        <td>{{p.sellerPrice}}</td>
+        <td>{{p.supplierPrice}}</td>
+        <td> <button class="btn btn-danger btn-xs" (click)="deleteProduct(p.productId)"><span class="glyphicon glyphicon-remove"></span> Delete</button></td>
+    </tr>
+</tbody>
+</table>
