@@ -2,6 +2,8 @@ package com.capg.inventorymgmtsystem.web;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,40 +20,50 @@ import com.capg.inventorymgmtsystem.entity.InventoryTxn;
 import com.capg.inventorymgmtsystem.exceptions.InvalidProdIdException;
 import com.capg.inventorymgmtsystem.exceptions.InvalidVendorIdException;
 import com.capg.inventorymgmtsystem.exceptions.OutOfStockException;
+import com.capg.inventorymgmtsystem.exceptions.VendorListEmptyException;
+import com.capg.inventorymgmtsystem.exceptions.WrongVendorTypeException;
 import com.capg.inventorymgmtsystem.service.InventoryTxnService;
+import com.capg.inventorymgmtsystem.util.InventoryTxnConstants;
 
-@CrossOrigin(origins= "http://localhost:4200")
+/**
+ * 
+ * @author Shikhar
+ * Inventory Transaction Controller
+ *
+ *
+ */
+@CrossOrigin(origins= InventoryTxnConstants.CROSS_ORIGIN_URL)
 @RestController
-@RequestMapping("/admin")
+@RequestMapping(InventoryTxnConstants.ADMIN_URL)
 public class InventoryTxnController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
+	
 	@Autowired
 	public InventoryTxnService inventoryTxnService;
 	
-	@PostMapping("/addinventorytxn")
-	public ResponseEntity<?> addInventoryTxn(@RequestBody InventoryTxnDto inventoryTxnDto){
-		try {
-			return new ResponseEntity<>(inventoryTxnService.addInvTxn(inventoryTxnDto),HttpStatus.OK);
-		}
-		catch(OutOfStockException e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
-		}
-		catch(InvalidVendorIdException e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
-		}
-		catch(InvalidProdIdException e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
-		}
+	/**
+	 * Add Inventory Transaction method
+	 * 
+	 * @param inventoryTxnDto - Dto of inventory transaction
+	 * @return InventoryTxn - Entity of inventory transaction
+	 */
+	@PostMapping(InventoryTxnConstants.ADD_INVENTORY_TXN_URL)
+	public ResponseEntity<?> addInventoryTxn(@RequestBody InventoryTxnDto inventoryTxnDto) throws OutOfStockException,InvalidVendorIdException,InvalidProdIdException,WrongVendorTypeException {
+		logger.info(InventoryTxnConstants.ADD_INVENTORY_TXN_ACCESSED);	
+		return new ResponseEntity<>(inventoryTxnService.addInvTxn(inventoryTxnDto),HttpStatus.OK);
 	}
 	
-	@GetMapping("/txnOfSpecVendor/{vendorId}")
-	public ResponseEntity<?> viewTxnOfSpecVendor(@PathVariable("vendorId") long vendorId){
-		try {
-			return new ResponseEntity<List<InventoryTxn>>(inventoryTxnService.txnOfSpecVendor(vendorId),HttpStatus.OK);		
-		}
-		catch(InvalidVendorIdException e) {
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
-		}
-		
+	/**
+	 * View List of all Inventory transactions of specific vendor
+	 * 
+	 * @param vendorId
+	 * @return List of Inventory transactions of specific vendor
+	 */
+	@GetMapping(InventoryTxnConstants.TXN_OF_SPEC_VENDOR_URL)
+	public ResponseEntity<?> viewTxnOfSpecVendor(@PathVariable("vendorId") long vendorId) throws InvalidVendorIdException,VendorListEmptyException{
+		logger.info(InventoryTxnConstants.TXN_OF_SPEC_VENDOR_ACCESSED);		
+		return new ResponseEntity<List<InventoryTxn>>(inventoryTxnService.txnOfSpecVendor(vendorId),HttpStatus.OK);		
 	}
 	
 }

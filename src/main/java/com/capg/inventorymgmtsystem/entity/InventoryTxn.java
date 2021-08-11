@@ -5,19 +5,24 @@ import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-
-
+/**
+ * 
+ * @author Shikhar
+ * Inventory Transaction POJO Class
+ *
+ */
 @Entity
 @Table(name="InventoryTxn")
 public class InventoryTxn {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="inventory_id")
 	private long inventoryId;
 	@Column(name="qty")
@@ -33,6 +38,7 @@ public class InventoryTxn {
 	@ManyToOne
 	@JoinColumn(name="vendor_id", referencedColumnName = "vendor_id")
 	private Vendor vendor = new Vendor();
+
 	public long getInventoryId() {
 		return inventoryId;
 	}
@@ -81,11 +87,23 @@ public class InventoryTxn {
 		this.vendor = vendor;
 	}
 
-	
+	/**
+	 * Default constructor
+	 */
 	public InventoryTxn() {
 		super();
 	}
 
+	/**
+	 * Parameterized constructor
+	 * 
+	 * @param inventoryId
+	 * @param qty
+	 * @param dateOfTxn
+	 * @param txnType
+	 * @param prod
+	 * @param vendor
+	 */
 	public InventoryTxn(long inventoryId, int qty, LocalDate dateOfTxn, String txtType, Product prod, Vendor vendor) {
 		super();
 		this.inventoryId = inventoryId;
@@ -94,5 +112,5 @@ public class InventoryTxn {
 		this.txtType = txtType;
 		this.prod = prod;
 		this.vendor = vendor;
-	}	
+	}
 }

@@ -1,11 +1,20 @@
 package com.capg.inventorymgmtsystem.dto;
 
-
+/**
+ * 
+ * @author Shikhar 
+ * InventoryTransactionDto(Data Transfer Object) class
+ *
+ */
 public class InventoryTxnDto {
 	private int qty;
 	private long vendorId;
 	private long productId;
 	private String vendortype;
+	
+	/**
+	 * default constructor
+	 */
 	public InventoryTxnDto(){
 		
 	}
@@ -33,6 +42,15 @@ public class InventoryTxnDto {
 	public void setVendortype(String vendortype) {
 		this.vendortype = vendortype;
 	}
+	
+	/**
+	 * Parameterized constructor
+	 * 
+	 * @param qty
+	 * @param vendorId
+	 * @param productId
+	 * @param vendortype
+	 */
 	public InventoryTxnDto(int qty, long vendorId, long productId, String vendortype) {
 		super();
 		this.qty = qty;

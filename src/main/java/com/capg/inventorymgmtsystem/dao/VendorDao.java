@@ -8,28 +8,27 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.capg.inventorymgmtsystem.entity.InventoryTxn;
-import com.capg.inventorymgmtsystem.entity.Product;
 import com.capg.inventorymgmtsystem.entity.Vendor;
+
 
 /**
  * 
- * @author Shikhar
+ * @author  Sakshi
  *
- *         Inventory Transaction DAO Repository
+ *         VENDOR DAO Repository
  */
 @Repository
-public interface InventoryTxnDao extends JpaRepository<InventoryTxn, Long>{
-
-	@Query("SELECT p from Product p WHERE p.productId=:pid")
-	Product viewProduct(@Param("pid") long productId);
-
-	@Query("SELECT v from Vendor v WHERE v.vendorId=:vid")
-	Vendor viewVendor(@Param("vid") long vendorId);
-
-	@Query("FROM InventoryTxn it where it.vendor.vendorId=:vid")
-	List<InventoryTxn> viewInventory(@Param("vid") long vendorId);
+public interface VendorDao extends JpaRepository<Vendor, Long> {
+	
+	
+	 
+	@Query("Select v from Vendor v where v.vendorId=:vid")
+	 Vendor viewVendor(@Param("vid")long vendorId);
+	
+	@Query("from InventoryTxn it where it.prod.productId=:pid and it.vendor.vendortype=:vtype")
+	List<InventoryTxn> viewInventoryForProductId(@Param("pid")long productId, @Param("vtype")String vendorType);
 	
 	@Query("FROM InventoryTxn it where it.prod.productId=:pid")
 	List<InventoryTxn> viewInventoryProd(@Param("pid") long productId);
-	
+
 }

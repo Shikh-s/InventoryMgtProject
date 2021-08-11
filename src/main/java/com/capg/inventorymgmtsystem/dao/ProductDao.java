@@ -5,7 +5,16 @@ import org.springframework.stereotype.Repository;
 
 import com.capg.inventorymgmtsystem.entity.Product;
 
+/**
+ * 
+ * @author Piyush
+ *
+ *         PRODUCT DAO Repository
+ */
 @Repository
-public interface ProductDao extends JpaRepository<Product, Long> {
+public interface ProductDao extends JpaRepository<Product, Long>  {
+	
+
+
 
 }

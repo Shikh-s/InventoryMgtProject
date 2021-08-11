@@ -5,6 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * 
+ * @author Sakshi Vendor POJO Class
+ *
+ */
 @Entity
 @Table(name="Vendor")
 public class Vendor {
@@ -67,9 +72,24 @@ public class Vendor {
 		this.vendortype = vendortype;
 	}
 	
+
+	/**
+	 * Default constructor
+	 */
 	public Vendor() {
 		super();
 	}
+	/**
+	 * Parameterized constructor
+	 * 
+	 * @param vendorId
+	 * @param companyName
+	 * @param address
+	 * @param area
+	 * @param contact
+	 * @param city
+	 * @param vendortype
+	 */
 	public Vendor(long vendorId, String companyName, String address, String area, String contact, String city,
 			String vendortype) {
 		super();
